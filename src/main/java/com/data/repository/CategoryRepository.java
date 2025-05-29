@@ -9,6 +9,6 @@ import java.util.Map;
 public interface CategoryRepository {
     boolean addCategoryVI(Categories_vi categoriesVi);
     boolean addCategoryEN(Categories_en categoriesEn);
-    List<Map<String, Object>> getAllCategories();
+    List<Map<String, Object>> getAllCategories(String lang);
 
 }

@@ -6,6 +6,9 @@ import com.data.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class CategoryServiceImp implements CategoryService {
     @Autowired
@@ -19,5 +22,10 @@ public class CategoryServiceImp implements CategoryService {
     @Override
     public boolean addCategoryEN(Categories_en categoriesEn) {
         return categoryRepo.addCategoryEN(categoriesEn);
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllCategories(String lang) {
+        return categoryRepo.getAllCategories(lang);
     }
 }

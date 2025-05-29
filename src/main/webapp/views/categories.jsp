@@ -12,18 +12,18 @@
 </head>
 <body>
     <h3>Language</h3>
-    <form>
-      <label for="categoryName_vi">Tên danh mục</label>
-      <input type="text" name="categoryName_vi" id="categoryName_vi">
+    <form action="/categories-save" method="post">
+      <label for="categoryNameVi">Tên danh mục (Tiếng Việt)</label>
+      <input type="text" name="categoryNameVi" id="categoryNameVi">
       <br>
-      <label for="description_vi">Mô tả</label>
-      <input type="text" name="description_vi" id="description_vi">
+      <label for="descriptionVi">Mô tả (Tiếng Việt)</label>
+        <textarea name="descriptionVi" id="descriptionVi" cols="30" rows="10"></textarea>
       <br>
-        <label for="categoryName_en">Tên danh mục</label>
-        <input type="text" name="categoryName_en" id="categoryName_en">
+        <label for="categoryNameEn">Tên danh mục (Tiếng Anh)</label>
+        <input type="text" name="categoryNameEn" id="categoryNameEn">
         <br>
-        <label for="description_en">Mô tả</label>
-        <input type="text" name="description_en" id="description_en">
+        <label for="descriptionEn">Mô tả (Tiếng Anh)</label>
+        <textarea name="descriptionEn" id="descriptionEn" cols="30" rows="10"></textarea>
         <br>
       <button type="submit">Thêm danh mục</button>
     </form>

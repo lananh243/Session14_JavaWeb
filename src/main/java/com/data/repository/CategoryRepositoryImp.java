@@ -23,8 +23,8 @@ public class CategoryRepositoryImp implements CategoryRepository {
         try {
             conn = ConnectionDB.openConnection();
             callSt = conn.prepareCall("{call add_category_vi(?,?)}");
-            callSt.setString(1, categoriesVi.getCategoryName());
-            callSt.setString(2, categoriesVi.getDescription());
+            callSt.setString(1, categoriesVi.getCategoryNameVi());
+            callSt.setString(2, categoriesVi.getDescriptionVi());
             boolean result = callSt.execute();
             return result;
         }catch (Exception e){
@@ -42,8 +42,8 @@ public class CategoryRepositoryImp implements CategoryRepository {
         try {
             conn = ConnectionDB.openConnection();
             callSt = conn.prepareCall("{call add_category_en(?,?)}");
-            callSt.setString(1, categoriesEn.getCategoryName());
-            callSt.setString(2, categoriesEn.getDescription());
+            callSt.setString(1, categoriesEn.getCategoryNameEn());
+            callSt.setString(2, categoriesEn.getDescriptionEn());
             boolean result = callSt.execute();
             return result;
         }catch (Exception e){
@@ -55,7 +55,7 @@ public class CategoryRepositoryImp implements CategoryRepository {
     }
 
     @Override
-    public List<Map<String, Object>> getAllCategories() {
+    public List<Map<String, Object>> getAllCategories(String lang) {
         Connection conn = null;
         CallableStatement callSt = null;
         List<Map<String, Object>> listCategories = new ArrayList<>();
@@ -65,11 +65,13 @@ public class CategoryRepositoryImp implements CategoryRepository {
             ResultSet rs = callSt.executeQuery();
             while (rs.next()) {
                 Map<String, Object> map = new HashMap<>();
-                map.put("id", rs.getInt("id"));
-                map.put("categoryName_vi", rs.getString("categoryName_vi"));
-                map.put("description_vi", rs.getString("description_vi"));
-                map.put("categoryName_en", rs.getString("categoryName_en"));
-                map.put("description_en", rs.getString("description_en"));
+                if ("en".equalsIgnoreCase(lang)) {
+                    map.put("categoryName", rs.getString("categoryName_en"));
+                    map.put("description", rs.getString("description_en"));
+                } else {
+                    map.put("categoryName", rs.getString("categoryName_vi"));
+                    map.put("description", rs.getString("description_vi"));
+                }
                 listCategories.add(map);
             }
         } catch (Exception e) {
